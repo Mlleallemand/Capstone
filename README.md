@@ -1,5 +1,7 @@
 # Online offer response analysis
 
+## Project motivation
+
 This repository contains an analysis using parametric statistics (ANOVA, ttests) as well as a Random Forest Classifier in order to assess which offers to send to which customer groups.
 
 The data set contains simulated data that mimics customer behavior on the Starbucks rewards mobile app. Once every few days, Starbucks sends out an offer to users of the mobile app. An offer can be merely an advertisement for a drink or an actual offer such as a discount or BOGO (buy one get one free). Some users might not receive any offer during certain weeks.
@@ -68,6 +70,14 @@ income or membership for targeting the customer group.
 What I did not consider in this analysis was repeated-measures or time effects. Looking at data records in terms of a time-series, one could extract regularities (e.g. somebody always buys coffee on Mondays to Fridays) and only send offers rarely - as these customers need less incentive than others.
 
 Another factor to consider is the "training" effect: if customers failed to complete difficult offers, they might turn to ignorant customers. So one option would be to send easier ones (with longer duration or less purchase required). All of this requires analysing sequences of offers which I did not do due to time constraints.
+
+### Acknowledgements
+No other sources other than the ones specified above were used.
+
+Code for running ANOVA is done using Pingouin:
+> Vallat, R. (2018). Pingouin: statistics in Python. 
+> Journal of Open Source Software, 3(31), 1026, https://doi.org/10.21105/joss.01026
+
 
 ### Note:
 
