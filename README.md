@@ -11,21 +11,16 @@ The task was to combine transaction, demographic and offer data to determine whi
 
 #### contained in standard library
 * [datetime]
-* [errno]
-* [os]
-* [sys]
-* [re]
 
 #### not contained in standard library
 * [Numpy] version 1.18.5 
 * [Pandas] version 1.0.5
 * [Seaborn] version 0.11.1
-* [json]
-* [flask]
+* [json] version 2.0.9
 * [matplotlib]
 * [sklearn]
-* [pingouin]
-* [statsmodels]
+* [pingouin] version 0.3.9
+* [statsmodels] version 0.11.1
 * [sklearn]
 
 ## Repository contents
@@ -42,14 +37,37 @@ The task was to combine transaction, demographic and offer data to determine whi
 | Figures/Welch | Folder for results on Welch ANOVA | |
 
 ### Instructions:
-1. Make sure to generate the figures folder above
+1. Make sure to generate the /Figures and /data in the main directory 
 
-2. Open the Jupyter notebook and run all cells containing function definitions (end of notebook)
+2. Add the Starbucks data (portfolio.json, profil.json, transcript.json) in the data/ folder - 
+   I did not add the datafiles as I wasn't sure about licensing
 
-3. Run notebook
+3. Open the Jupyter notebook and run all cells containing function definitions (end of notebook)
+
+4. Run the notebook
 
 ### Summary:
 
+I used two separate approaches:
+
+- using a General Linear Model (ANOVA and post-hoc tests) which resulted in significant main effects of offer response on both income and membership duration
+
+- training a random forest classifer to predict offer response using income and membership duration as predictors. Adding gender or age did not improve the model much, in case of age this was probably due to the correlation of age with income present in the dataset
+
+I trained a RF classifier for each of the eight offer types using "success", and "ignore" as class labels and "income" and "membership duration in days" as predictors. Prediction accuracy was 0.77 on average across all offer types, which unfortunately also did not improve by taking into account more class labels or weighted responses.
+
+Looking at the different offer types, a mixture of income and membership threshold can be used to find the target groups.
+
+### Outlook:
+
+There are some easy paths to implement. We can for example exclude customers who have a very high ratio of ignored offers (say > the 95 percentile of the distribution) from further offers, as they might perceive continued offers as SPAM. In our dataset, this affects 353 customers.
+
+For the offer structure, the individual trees need to be looked at to determine the optimal split by 
+income or membership for targeting the customer group.
+
+What I did not consider in this analysis was repeated-measures or time effects. Looking at data records in terms of a time-series, one could extract regularities (e.g. somebody always buys coffee on Mondays to Fridays) and only send offers rarely - as these customers need less incentive than others.
+
+Another factor to consider is the "training" effect: if customers failed to complete difficult offers, they might turn to ignorant customers. So one option would be to send easier ones (with longer duration or less purchase required). All of this requires analysing sequences of offers which I did not do due to time constraints.
 
 ### Note:
 
