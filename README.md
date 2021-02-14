@@ -1,4 +1,4 @@
-# Disaster Response Pipeline Project
+# Online offer response analysis
 
 This repository contains an analysis using parametric statistics (ANOVA, ttests) as well as a Random Forest Classifier in order to assess which offers to send to which customer groups.
 
@@ -68,7 +68,7 @@ The task was to combine transaction, demographic and offer data to determine whi
 [nltk]:<https://www.nltk.org/>
 [pywsd]:<https://pypi.org/project/pywsd/>
 [flask]:<https://flask.palletsprojects.com/en/1.1.x/>
-
+[pingouin]:<https://pingouin-stats.org/>
 [errno]:<>
 [os]:<>
 [sys]:<>
